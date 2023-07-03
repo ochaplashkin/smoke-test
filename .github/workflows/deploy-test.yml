@@ -11,14 +11,14 @@ jobs:
         with:
             fetch-depth: 0
       - name: Set env
-        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+        run: echo "BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
       - name: Test
-        run: echo $GITHUB_SHA_SHORT
+        run: echo $BRANCH
       - id: deploy
         name: Deploy to dokku
         uses: ochaplashkin/dokku-deploy-github-action@master
         with:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
             dokku-host: ${{ secrets.DOKKU_HOST }}
-            app-name: smoke-test-${{ github.ref_name }}
+            app-name: smoke-test-$BRANCH
             git-push-flags: '--force'

@@ -18,5 +18,5 @@ jobs:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
             dokku-host: ${{ secrets.DOKKU_HOST }}
             app-name: smoke-test
-            remote-branch: ${{ GITHUB_REF_NAME }}
+            remote-branch: $GITHUB_REF_NAME
             git-push-flags: '--force'

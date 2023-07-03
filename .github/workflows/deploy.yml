@@ -13,7 +13,7 @@ jobs:
             fetch-depth: 0
       - id: deploy
         name: Deploy to dokku
-        uses: NickVolynkin/dokku-deploy-github-action@allow-multiple-deployments
+        uses: ochaplashkin/dokku-deploy-github-action@dokku-deploy-github-action
         with:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
             dokku-host: ${{ secrets.DOKKU_HOST }}

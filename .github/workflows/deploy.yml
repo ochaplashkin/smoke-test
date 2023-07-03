@@ -1,0 +1,21 @@
+name: Deploy to Dokku
+
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - id: deploy
+        name: Deploy to dokku
+        uses: NickVolynkin/dokku-deploy-github-action@allow-multiple-deployments
+        with:
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            dokku-host: ${{ secrets.DOKKU_HOST }}
+            app-name: smoke-test
+            git-push-flags: '--force'

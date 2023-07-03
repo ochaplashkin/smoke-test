@@ -10,12 +10,14 @@ jobs:
       - uses: actions/checkout@v3
         with:
             fetch-depth: 0
-      - uses: nelonoel/branch-name@v1
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v7
       - id: deploy
         name: Deploy to dokku
         uses: ochaplashkin/dokku-deploy-github-action@master
         with:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
             dokku-host: ${{ secrets.DOKKU_HOST }}
-            app-name: smoke-test-${BRANCH_NAME}
+            app-name: smoke-test-${{ steps.branch-name.outputs.current_branch }}
             git-push-flags: '--force'

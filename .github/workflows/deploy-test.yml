@@ -11,6 +11,7 @@ jobs:
         with:
             fetch-depth: 0
       - uses: nelonoel/branch-name@v1
+      - id: test
         run: echo ${BRANCH_NAME}
       - id: deploy
         name: Deploy to dokku

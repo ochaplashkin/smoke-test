@@ -11,7 +11,7 @@ jobs:
         with:
             fetch-depth: 0
       - name: Set env
-        run: echo "GITHUB_SHA_SHORT=$(echo git branch --show-current)" >> $GITHUB_ENV
+        run: echo "GITHUB_SHA_SHORT=$(git branch --show-current)" >> $GITHUB_ENV
       - name: Test
         run: echo $GITHUB_SHA_SHORT
       - id: deploy
